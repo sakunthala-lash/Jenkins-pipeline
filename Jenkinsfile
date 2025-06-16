@@ -9,8 +9,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('demo') { // Navigate to demo/ where pom.xml is located
-                    bat 'mvn clean install' // Windows
+                dir('demo') { 
+                    bat 'mvn clean install'
                 }
             }
         }
