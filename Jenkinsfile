@@ -9,19 +9,25 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn clean install' 
+                dir('demo') { // Navigate to demo/ where pom.xml is located
+                    bat 'mvn clean install' // Windows
+                }
             }
         }
         stage('Test') {
             steps {
-                bat 'mvn test'
+                dir('demo') {
+                    bat 'mvn test'
+                }
             }
         }
     }
     post {
         always {
-            archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
-            junit 'target/surefire-reports/*.xml'
+            dir('demo') { // Archive artifacts and test results from demo/
+                archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+                junit 'target/surefire-reports/*.xml'
+            }
         }
         success {
             step([
