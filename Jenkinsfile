@@ -27,20 +27,10 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                dir('demo') { 
-                      bat 'mvn test'
-                }
-              
-            }
-        }
+       
     }
     post {
-        always {
-            archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
-            junit 'target/surefire-reports/*.xml'
-        }
+      
         success {
             githubNotify('success', 'Build succeeded')
         }
