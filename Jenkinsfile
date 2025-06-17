@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the current branch or PR
-                git branch: "${env.BRANCH_NAME ?: 'main'}", url: 'https://github.com/sakunthala-lash/Jenkns-pipeline.git', credentialsId: 'github-credentials'
+                git branch: "${env.BRANCH_NAME ?: 'main'}", url: 'https://github.com/sakunthala-lash/Jenkins-pipeline.git', credentialsId: 'github-credentials'
             }
         }
         stage('Get Commit SHA') {
